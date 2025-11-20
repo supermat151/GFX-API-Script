@@ -5,7 +5,7 @@ REM Change to the Scripts directory
 cd Scripts
 
 REM Run the Python script and capture the output
-powershell -Command "python GFX_Long_Duration_Testing.py | Tee-Object -FilePath ..\output.txt"
+powershell -Command "python main.py | Tee-Object -FilePath ..\output.txt"
 
 REM Read the expected folder name from the file
 set /p expected_folder_name=<..\folder_name.txt
