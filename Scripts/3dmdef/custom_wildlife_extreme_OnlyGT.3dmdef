@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<benchmark>
+  <application_info>
+    <selected_workloads>
+      <selected_workload name="WildLifeGt1XC"/>
+    </selected_workloads>
+  </application_info>
+  <settings>
+    <setting>
+      <name>adapter_luid</name>
+      <value></value>
+    </setting>
+    <setting>
+      <name>display_id</name>
+      <value></value>
+    </setting>
+ 	<setting>
+  		<name>fullscreen</name>
+   		<value>1</value>
+   	</setting>
+	<setting>
+		<name>loop</name>
+		<value>0</value>
+	</setting>
+	<setting>
+		<name>loop_count</name>
+		<value>1</value>
+	</setting>
+	<setting>
+		<name>screen_width</name>
+		<value>3840</value>
+	</setting>
+	<setting>
+		<name>screen_height</name>
+		<value>2160</value>
+	</setting>
+	<setting>
+		<name>backend</name>
+		<value>vulkan</value>	<!-- vulkan or dx12 -->
+	</setting>
+</settings>
+
+</benchmark>

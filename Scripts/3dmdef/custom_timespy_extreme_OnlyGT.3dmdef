@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<benchmark>
+	<test_info>
+		<benchmark_tests>
+			<benchmark_test name="Time_SpyXC" test_run_type="EXPLICIT" version="1.0"/>
+		</benchmark_tests>
+	</test_info>
+  <application_info>
+    <selected_workloads>
+      <selected_workload name="TimeSpyGt1C"/>
+      <selected_workload name="TimeSpyGt2C"/>
+    </selected_workloads>
+  </application_info>
+
+  <settings>
+	<setting>
+		<name>is_debug_log_enabled</name>
+		<value>0</value>
+	</setting>
+	<setting>
+		<name>is_windowed</name>
+		<value>0</value>
+	</setting>
+	<setting>
+		<name>disable_async_compute</name>
+		<value>0</value>
+	</setting>
+	<setting>
+		<name>is_wireframe_enabled</name>
+		<value>0</value>
+	</setting>
+	<setting>
+		<name>is_looping_enabled</name>
+		<value>0</value>
+	</setting>
+	<setting>
+		<name>loop_count</name>
+		<value>1</value>
+	</setting>	  
+	<setting>
+		<name>enable_vsync</name>
+		<value>0</value>
+	</setting>
+	<setting>
+		<name>enable_fixed_fps</name>
+		<value>0</value>
+	</setting>
+	<setting>
+		<name>fixed_fps</name>
+		<value>0</value>
+	</setting>
+	<setting>
+		<name>screen_width</name>
+		<value>3840</value>
+	</setting>
+	<setting>
+		<name>screen_height</name>
+		<value>2160</value>
+	</setting>
+	<setting>
+		<name>texture_filtering_mode</name>
+		<value>trilinear</value>
+	</setting>
+	<setting>
+		<name>max_af_anisotropy</name>
+		<value>4</value>
+	</setting>
+	<setting>
+		<name>max_tessellation_factor</name>
+		<value>32</value>
+	</setting>
+	<setting>
+		<name>use_triple_buffering</name>
+		<value>0</value>
+	</setting>
+	<setting>
+		<name>test_id</name>
+		<value>auto</value>
+	</setting>
+	<setting>
+		<name>cpu_config_path</name>
+		<value>configs/cpu_extreme.json</value>
+	</setting>
+    <setting>
+        <name>cpu_instruction_set</name>
+        <value>auto</value> <!-- Allowed values: auto, AVX512, AVX2, AVXFMA, SSE3 -->
+    </setting>
+</settings>
+
+</benchmark>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<benchmark>
+  <application_info>
+    <selected_workloads>
+      <selected_workload name="SteelNomadGt1C"/>
+    </selected_workloads>
+  </application_info>
+
+  <settings>
+    <setting>
+      <name>adapter_luid</name>
+      <value></value>
+    </setting>
+    <setting>
+      <name>display_id</name>
+      <value></value>
+    </setting>
+	<setting>
+		<name>screen_width</name>
+		<value>3840</value>
+	</setting>
+	<setting>
+		<name>screen_height</name>
+		<value>2160</value>
+	</setting>
+	<setting>
+   		<name>output_color_space</name>
+   		<value>false</value>
+   	</setting>
+	<setting>
+   		<name>fullscreen</name>
+   		<value>true</value>
+   	</setting>
+	<setting>
+		<name>loop</name>
+		<value>false</value>
+	</setting>
+	<setting>
+		<name>loop_count</name>
+		<value>1</value>
+	</setting>
+	<setting>
+		<name>vsync</name>
+		<value>false</value>
+	</setting>
+	<setting>
+		<name>backend</name>
+		<value>dx12</value>
+	</setting>
+
+  </settings>
+
+</benchmark>

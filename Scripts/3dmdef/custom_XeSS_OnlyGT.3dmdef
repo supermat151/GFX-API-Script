@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<benchmark>
+  <application_info>
+    <selected_workloads>
+      <selected_workload name="IntelXessFtXessOffP"/>
+      <selected_workload name="IntelXessFtXessOnP"/>
+    </selected_workloads>
+  </application_info>
+  <settings>
+    <setting>
+      <name>adapter_luid</name>
+      <value></value>
+    </setting>
+    <setting>
+      <name>display_id</name>
+      <value></value>
+    </setting>
+    <!-- possible xess quality setting values are from 1 (Performance) to 4 (Ultimate Quality). several values can be given separated by commas  -->
+    <setting>
+      <name>xess_quality_setting</name>
+      <value>4</value>
+    </setting>
+</settings>
+
+</benchmark>
