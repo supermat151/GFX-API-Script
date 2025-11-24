@@ -35,9 +35,9 @@ DURATION_PER_LOOP = {
 }
 
 # File paths
-SOURCE_3DMDEF = r"C:\Users\gta\Desktop\GFX API Script\Scripts\3dmdef"
-SOURCE_HEAVEN = r"C:\Users\gta\Desktop\GFX API Script\Scripts\Heaven"
-SOURCE_VALLEY = r"C:\Users\gta\Desktop\GFX API Script\Scripts\Valley"
+SOURCE_3DMDEF = r"C:\Users\gta\Desktop\GFX-API-Script\Scripts\3dmdef"
+SOURCE_HEAVEN = r"C:\Users\gta\Desktop\GFX-API-Script\Scripts\Heaven"
+SOURCE_VALLEY = r"C:\Users\gta\Desktop\GFX-API-Script\Scripts\Valley"
 DESTINATION_3DMDEF = r"C:\Program Files\UL\3DMark"
 SUPERPOSITION_FOLDER = r"C:\Unigine\Superposition Benchmark 1.1 Advanced\bin"
 THREEDMARK_FOLDER = r"C:\Program Files\UL\3DMark"
@@ -46,8 +46,8 @@ HEAVEN_RUN_FOLDER = r"C:\Unigine\Heaven Benchmark 4.0 Advanced\automation"
 HEAVEN_INIT_FOLDER = r"C:\Unigine\Heaven Benchmark 4.0 Advanced\automation\heaven_automation"
 VALLEY_RUN_FOLDER = r"C:\Unigine\Valley Benchmark 1.0 Advanced\automation"
 VALLEY_INIT_FOLDER = r"C:\Unigine\Valley Benchmark 1.0 Advanced\automation\valley_automation"
-DGMONITOR_BAT = r"C:\Users\gta\Desktop\GFX API Script\Scripts\DGmonitor.bat"
-DEPENDENCY_INSTALLATION = r"C:\Users\gta\Desktop\GFX API Script\Scripts\Installation.bat"
+DGMONITOR_BAT = r"C:\Users\gta\Desktop\GFX-API-Script\Scripts\DGmonitor.bat"
+DEPENDENCY_INSTALLATION = r"C:\Users\gta\Desktop\GFX-API-Script\Scripts\Installation.bat"
 
 # Files to copy
 THREEDMARK_FILES = [
