@@ -27,7 +27,7 @@ def create_info_folder(board_number, script_path, timestamp):
 
 def save_folder_name_to_file(expected_folder_name):
     """Save the expected folder name to a text file."""
-    target_directory = r"C:\Users\gta\Desktop\GFX API Script"
+    target_directory = r"C:\Users\gta\Desktop\GFX-API-Script"
     
     if not os.path.exists(target_directory):
         os.makedirs(target_directory)

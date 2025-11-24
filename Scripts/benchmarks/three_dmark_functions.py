@@ -11,7 +11,7 @@ import logManagement
 def run_single_3dmark_iteration(benchmark_name, expected_folder_name, loop_count=1):
     """Run a single iteration of 3DMark benchmark."""
     definition_file = f'C:\\Program Files\\UL\\3DMark\\custom_{benchmark_name}_OnlyGT.3dmdef'
-    log_file = f'C:\\Users\\gta\\Desktop\\GFX API Script\\{expected_folder_name}\\Benchmark Logs\\{benchmark_name}.log'
+    log_file = f'C:\\Users\\gta\\Desktop\\GFX-API-Script\\{expected_folder_name}\\Benchmark Logs\\{benchmark_name}.log'
     loop_param = f'--loop="{loop_count}"'
     benchmark_command = f'3DMarkCmd.exe --definition="{definition_file}" --log="{log_file}" {loop_param}'
     

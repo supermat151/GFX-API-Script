@@ -9,8 +9,8 @@ from utils.file_utils import copy_3dmark_files, copy_heaven_files, copy_valley_f
 
 def setup_dependencies():
     """Install necessary dependencies if not already installed."""
-    try:
-        import psutil
+    try:    
+        import psutil # type: ignore
         print("psutil is already installed")
         import pyautogui
         print("pyautogui is already installed")

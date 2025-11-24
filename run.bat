@@ -11,7 +11,7 @@ REM Read the expected folder name from the file
 set /p expected_folder_name=<..\folder_name.txt
 
 REM Define the expected folder path
-set "expected_folder_path=C:\Users\gta\Desktop\GFX API Script\%expected_folder_name%"
+set "expected_folder_path=C:\Users\gta\Desktop\GFX-API-Script\%expected_folder_name%"
 
 REM Check if the folder exists, if not create it
 if not exist "%expected_folder_path%" (
