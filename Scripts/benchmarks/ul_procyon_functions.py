@@ -2,6 +2,7 @@
 
 import os
 import subprocess
+import pyautogui
 from config.settings import ULPROCYON_FOLDER
 from utils.dgmonitor_utils import start_dgmonitor, stop_dgmonitor
 from utils.duration_utils import parse_duration_and_check
@@ -76,21 +77,32 @@ def manage_ul_procyon_benchmark(benchmark_name, loop_count, expected_folder_name
 
 def run_ul_procyon_benchmark(benchmark_name, include_logging, expected_folder_name, test_duration):
     """Run UL Procyon benchmark with logging and duration checking."""
-    os.chdir(ULPROCYON_FOLDER)
-    loop_count = 1
-
-    dgmonitor_window = None
-    if include_logging:
-        dgmonitor_window = start_dgmonitor(benchmark_name)
-        
-    return_code = manage_ul_procyon_benchmark(benchmark_name, loop_count, expected_folder_name, test_duration)
+    # Store original failsafe setting and disable it for UL Procyon
+    original_failsafe = pyautogui.FAILSAFE
+    pyautogui.FAILSAFE = False
+    print(f"PyAutoGUI failsafe disabled for {benchmark_name} benchmark")
     
-    if return_code == 0 and include_logging == 0:
-        pass
-    elif return_code == 0 and include_logging == 1:
-        stop_dgmonitor(benchmark_name, dgmonitor_window)
-        logManagement.move_dgmonitor_logs(expected_folder_name)
-    else:
-        print(f"{benchmark_name} execution failed.")
+    try:
+        os.chdir(ULPROCYON_FOLDER)
+        loop_count = 1
 
-    return return_code
+        dgmonitor_window = None
+        if include_logging:
+            dgmonitor_window = start_dgmonitor(benchmark_name)
+            
+        return_code = manage_ul_procyon_benchmark(benchmark_name, loop_count, expected_folder_name, test_duration)
+        
+        if return_code == 0 and include_logging == 0:
+            pass
+        elif return_code == 0 and include_logging == 1:
+            stop_dgmonitor(benchmark_name, dgmonitor_window)
+            logManagement.move_dgmonitor_logs(expected_folder_name)
+        else:
+            print(f"{benchmark_name} execution failed.")
+
+        return return_code
+    
+    finally:
+        # Always restore the original failsafe setting
+        pyautogui.FAILSAFE = original_failsafe
+        print(f"PyAutoGUI failsafe restored after {benchmark_name} benchmark")
