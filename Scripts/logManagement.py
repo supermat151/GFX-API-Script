@@ -3,7 +3,7 @@ import os, shutil, datetime
 def create_benchmark_logs_folder(board_number, DriverVersion, IFWIVersion, time):
     """Create a new folder named 'Benchmark Logs' at the specified location."""
     # Construct the full path for the new folder
-    location = r"C:\Users\gta\Desktop\GFX API Script"
+    location = r"C:\Users\gta\Desktop\GFX-API-Script"
     
     # Construct the expected folder name
     expected_folder_name = f"Board{board_number}_Driver{DriverVersion}_IFWI{IFWIVersion}_%s"%time
@@ -30,7 +30,7 @@ def create_benchmark_logs_folder(board_number, DriverVersion, IFWIVersion, time)
 def move_dgmonitor_logs(expected_folder_name):
 
     #Set the folder location
-    script_location = r"C:\Users\gta\Desktop\GFX API Script"
+    script_location = r"C:\Users\gta\Desktop\GFX-API-Script"
     DGmonitor_log_location = r"C:\Program Files\Intel Corporation\DGDiagTool_internal"
 
     # Ensure the dgdiag folder exists
@@ -77,7 +77,7 @@ def move_dgmonitor_logs(expected_folder_name):
 def move_heaven_logs(expected_folder_name):
 
     #Set the folder location
-    script_location = r"C:\Users\gta\Desktop\GFX API Script"
+    script_location = r"C:\Users\gta\Desktop\GFX-API-Script"
     Heaven_log_location = r"C:\Users\gta\Heaven\reports"
 
     # Ensure the dgdiag folder exists
@@ -124,7 +124,7 @@ def move_heaven_logs(expected_folder_name):
 def move_valley_logs(expected_folder_name):
 
     #Set the folder location
-    script_location = r"C:\Users\gta\Desktop\GFX API Script"
+    script_location = r"C:\Users\gta\Desktop\GFX-API-Script"
     Valley_log_location = r"C:\Users\gta\Valley\reports"
 
     # Ensure the dgdiag folder exists
@@ -170,7 +170,7 @@ def move_valley_logs(expected_folder_name):
 
 def move_output_file(expected_folder_name):
     # Define the source path of the output.txt file
-    source_path = r"C:\Users\gta\Desktop\GFX API Script\output.txt"
+    source_path = r"C:\Users\gta\Desktop\GFX-API-Script\output.txt"
     
     # Check if the source file exists
     if not os.path.exists(source_path):
@@ -178,7 +178,7 @@ def move_output_file(expected_folder_name):
         return
     
     # Define the destination path where the output.txt file will be moved
-    destination_path = os.path.join(r"C:\Users\gta\Desktop\GFX API Script", expected_folder_name, "output.txt")
+    destination_path = os.path.join(r"C:\Users\gta\Desktop\GFX-API-Script", expected_folder_name, "output.txt")
     
     # Create the destination directory if it does not exist
     os.makedirs(os.path.dirname(destination_path), exist_ok=True)

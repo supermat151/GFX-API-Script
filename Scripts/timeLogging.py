@@ -9,10 +9,10 @@ test_finished = threading.Event()
 # Get the directory of the script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Move up one directory level to 'GFX API Script'
+# Move up one directory level to 'GFX-API-Script'
 base_dir = os.path.dirname(script_dir)
 
-# Default log file path in the 'GFX API Script' directory
+# Default log file path in the 'GFX-API-Script' directory
 log_path = os.path.join(base_dir, "Duration.log")
 
 def set_log_path(filename, expected_folder_name):

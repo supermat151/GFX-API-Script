@@ -35,7 +35,7 @@ def main():
     
     if selected_workloads:
         # Setup folder structure
-        os.chdir(r"C:\Users\gta\Desktop\GFX API Script")
+        os.chdir(r"C:\Users\gta\Desktop\GFX-API-Script")
         script_path = os.getcwd()
         timestamp = time.strftime("%Y-%m-%d_%I-%M-%S-%p", time.localtime())
         
