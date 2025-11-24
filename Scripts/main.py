@@ -54,10 +54,11 @@ def main():
         save_folder_name_to_file(expected_folder_name)
         logManagement.create_benchmark_logs_folder(board_number, Driver_version, IFWI_version, timestamp)
         
-        # Run benchmarks
+        # Run benchmarks with settings
         print("\nStarting benchmark execution...")
         try:
-            run_selected_benchmarks(selected_workloads, test_duration, include_logging, expected_folder_name)
+            run_selected_benchmarks(selected_workloads, test_duration, include_logging, 
+                                  expected_folder_name, all_settings)
             print("All benchmarks completed successfully!")
         except Exception as e:
             print(f"Caught an exception: {e}")
