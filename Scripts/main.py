@@ -2,7 +2,13 @@
 GFX Long Duration Automation Script
 Created by: matthew.lim@intel.com
 
-Version 2.5 - Modularized code structure (function-based)
+Version 2.0 - Added more benchmarks including speedway and steel nomad
+Version 2.1 - Added Unigine Heaven and Valley into benchmark
+Version 2.2 - Added run.bat script to save console output of program
+Version 2.3 - Added XeSS workload
+Version 2.4 - Added setting choices for Superposition, Heaven, Valley
+Version 2.5 - Added UL procyon vision, image and LLM
+Version 2.6 - Modularized code structure (function-based)
 """
 
 import os
