@@ -8,14 +8,14 @@ from config.settings import (SOURCE_3DMDEF, SOURCE_HEAVEN, SOURCE_VALLEY,
                            HEAVEN_FILES, VALLEY_FILES)
 import Driver_IFWI_Info
 
-def create_info_folder(board_number, script_path, timestamp):
+def create_info_folder(board_number, script_path):
     """Create folder for board test information."""
     # Get driver and firmware information
     driver_version = Driver_IFWI_Info.get_Driver_Version()
     ifwi_version = Driver_IFWI_Info.get_IFWI_Version()
     
     # Create folder name
-    folder_name = f"Board{board_number}_Driver{driver_version}_IFWI{ifwi_version}_{timestamp}"
+    folder_name = f"Board{board_number}_Driver{driver_version}_IFWI{ifwi_version}"
     
     # Create the directory
     full_path = os.path.join(script_path, folder_name)
