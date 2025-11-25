@@ -1,12 +1,12 @@
-import os, shutil, datetime
+import os, shutil
 
-def create_benchmark_logs_folder(board_number, DriverVersion, IFWIVersion, time):
+def create_benchmark_logs_folder(board_number, DriverVersion, IFWIVersion):
     """Create a new folder named 'Benchmark Logs' at the specified location."""
     # Construct the full path for the new folder
     location = r"C:\Users\gta\Desktop\GFX-API-Script"
     
     # Construct the expected folder name
-    expected_folder_name = f"Board{board_number}_Driver{DriverVersion}_IFWI{IFWIVersion}_%s"%time
+    expected_folder_name = f"Board{board_number}_Driver{DriverVersion}_IFWI{IFWIVersion}"
     
     # Search for the matching folder
     for folder in os.listdir(location):

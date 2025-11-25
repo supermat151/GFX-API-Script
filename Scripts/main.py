@@ -13,13 +13,11 @@ Version 2.7 - Integrated Logging enhancement
 """
 
 import os
-import time
 from setup.setup_functions import setup_dependencies, setup_all_files
 from gui.gui_functions import run_gui
 from benchmarks.benchmark_runner import run_selected_benchmarks
 from utils.file_utils import create_info_folder, save_folder_name_to_file
 from utils.output_logger import setup_logging, cleanup_logging
-import timeLogging
 import logManagement
 import Driver_IFWI_Info
 
@@ -50,14 +48,13 @@ def main():
         # Setup folder structure
         os.chdir(r"C:\Users\gta\Desktop\GFX-API-Script")
         script_path = os.getcwd()
-        timestamp = time.strftime("%Y-%m-%d_%I-%M-%S-%p", time.localtime())
         
-        create_info_folder(board_number, script_path, timestamp)
+        create_info_folder(board_number, script_path)
         
         # Create benchmark logs folder
         Driver_version = Driver_IFWI_Info.get_Driver_Version()
         IFWI_version = Driver_IFWI_Info.get_IFWI_Version()
-        expected_folder_name = f"Board{board_number}_Driver{Driver_version}_IFWI{IFWI_version}_{timestamp}"
+        expected_folder_name = f"Board{board_number}_Driver{Driver_version}_IFWI{IFWI_version}"
         
         # Setup output logging to the created folder
         output_folder_path = os.path.join(script_path, expected_folder_name)
@@ -65,7 +62,7 @@ def main():
         print(f"\nOutput logging started - saving to: {output_folder_path}\\output.txt")
         
         # No longer need to save folder name to temp file
-        logManagement.create_benchmark_logs_folder(board_number, Driver_version, IFWI_version, timestamp)
+        logManagement.create_benchmark_logs_folder(board_number, Driver_version, IFWI_version)
         
         # Run benchmarks with settings
         print("\nStarting benchmark execution...")
