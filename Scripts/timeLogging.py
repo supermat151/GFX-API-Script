@@ -24,18 +24,18 @@ def set_log_path(filename, expected_folder_name):
 
     # Check if the expected folder exists
     if os.path.exists(expected_folder_path):
-        # Adjust the path to include "Testing Duration" directory within the
-        #  expected folder
+        # Adjust the path to include "Testing Duration" directory within the expected folder
         log_path = os.path.join(expected_folder_path, "Testing Duration", filename)
 
         # Ensure the "Testing Duration" directory exists, create it if not
         os.makedirs(os.path.dirname(log_path), exist_ok=True)
 
-        # Create the log file if it doesn't exist
+        # Create the log file with initial content if it doesn't exist
         if not os.path.exists(log_path):
             with open(log_path, 'w') as f:
-                # Create an empty log file
-                f.write("")
+                f.write(f"Test started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                f.write("Duration: 0:00:00\n")
+                f.flush()  # Force immediate write
             print(f"Log file created: {log_path}")
             print("\n")
         else:
@@ -43,13 +43,14 @@ def set_log_path(filename, expected_folder_name):
     else:
         print(f"Expected folder does not exist: {expected_folder_path}")
 
-
 def log_duration(start_time, end_time=None):
-    """Log the current duration or final duration to the log file with days, hours (not exceeding 24), minutes, and seconds."""
+    """Log the current duration or final duration to the log file with crash-safe writing."""
     if end_time:
         duration = end_time - start_time
+        status = "COMPLETED"
     else:
         duration = datetime.now() - start_time
+        status = "RUNNING"
     
     # Calculate total seconds in the duration
     total_seconds = int(duration.total_seconds())
@@ -66,9 +67,32 @@ def log_duration(start_time, end_time=None):
     else:
         formatted_duration = f"{hours}:{minutes:02d}:{seconds:02d}"
     
-    # Write the formatted duration to the log file
-    with open(log_path, "w") as f:
-        f.write(f"Duration: {formatted_duration}\n")
+    # Write to file with crash-safe method
+    try:
+        # Write to a temporary file first
+        temp_path = log_path + ".tmp"
+        with open(temp_path, "w") as f:
+            f.write(f"Test started: {start_time.strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"Current time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"Status: {status}\n")
+            f.write(f"Duration: {formatted_duration}\n")
+            f.flush()  # Force immediate write to disk
+        
+        # Atomically replace the original file (crash-safe)
+        if os.path.exists(log_path):
+            os.replace(temp_path, log_path)
+        else:
+            os.rename(temp_path, log_path)
+            
+    except Exception as e:
+        print(f"Error writing to log file: {e}")
+        # If temp file method fails, try direct write as backup
+        try:
+            with open(log_path, "w") as f:
+                f.write(f"Duration: {formatted_duration} (backup write)\n")
+                f.flush()
+        except:
+            pass  # If even this fails, at least don't crash the main program
 
 def update_log_periodically(start_time, interval=1):
     """Periodically update the log file with the current test duration."""
@@ -89,13 +113,17 @@ def start_test():
     
     # Start the thread that will periodically update the log
     updater_thread = threading.Thread(target=update_log_periodically, args=(start_time, interval))
+    updater_thread.daemon = True  # Dies with main program if it crashes
     updater_thread.start()
     
 def stop_test():
     """Stops the test and logs the final duration."""
     # Indicate test completion and wait for the updater thread to finish
     test_finished.set()
-    updater_thread.join()
+    try:
+        updater_thread.join(timeout=5)  # Wait max 5 seconds for thread to finish
+    except:
+        pass  # If thread doesn't respond, continue anyway
     
     # Log final duration
     log_duration(start_time, datetime.now())
