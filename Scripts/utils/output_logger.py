@@ -6,17 +6,29 @@ from datetime import datetime
 
 # Global variables to store original streams and log file
 original_stdout = None
-original_stderr = None
 log_file = None
 output_folder = None
 
+def write_to_both(text):
+    """Write text to both console and log file."""
+    global original_stdout, log_file
+    original_stdout.write(text)
+    if log_file:
+        log_file.write(text)
+
+def flush_both():
+    """Flush both console and log file."""
+    global original_stdout, log_file
+    original_stdout.flush()
+    if log_file:
+        log_file.flush()
+
 def setup_logging(folder_path):
     """Setup logging to capture output to both console and file."""
-    global original_stdout, original_stderr, log_file, output_folder
+    global original_stdout, log_file, output_folder
     
-    # Store original streams
+    # Store original stdout
     original_stdout = sys.stdout
-    original_stderr = sys.stderr
     output_folder = folder_path
     
     # Ensure the output folder exists
@@ -33,45 +45,28 @@ def setup_logging(folder_path):
     log_file.write("=" * 50 + "\n\n")
     log_file.flush()
     
-    # Replace stdout with our custom write function
-    sys.stdout.write = write_to_both
-    sys.stdout.flush = flush_both
-
-def write_to_both(text):
-    """Write text to both console and log file."""
-    global original_stdout, log_file
+    # Create a simple object with our functions
+    class SimpleOutput:
+        def write(self, text):
+            write_to_both(text)
+        def flush(self):
+            flush_both()
     
-    # Write to original console
-    original_stdout.write(text)
-    original_stdout.flush()
-    
-    # Write to log file if it exists
-    if log_file:
-        log_file.write(text)
-        log_file.flush()
-
-def flush_both():
-    """Flush both console and log file."""
-    global original_stdout, log_file
-    
-    original_stdout.flush()
-    if log_file:
-        log_file.flush()
+    # Replace stdout with our simple output
+    sys.stdout = SimpleOutput()
 
 def cleanup_logging():
-    """Restore original stdout/stderr and close log file."""
-    global original_stdout, original_stderr, log_file
+    """Restore original stdout and close log file."""
+    global original_stdout, log_file
     
     if log_file:
         log_file.write(f"\n\nCompleted: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         log_file.close()
         log_file = None
     
-    # Restore original stdout and stderr
+    # Restore original stdout
     if original_stdout:
         sys.stdout = original_stdout
-    if original_stderr:
-        sys.stderr = original_stderr
 
 def print_and_log(message):
     """Helper function to print a message (will be captured by logging)."""
