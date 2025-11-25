@@ -9,6 +9,7 @@ Version 2.3 - Added XeSS workload
 Version 2.4 - Added setting choices for Superposition, Heaven, Valley
 Version 2.5 - Added UL procyon vision, image and LLM
 Version 2.6 - Modularized code structure (function-based)
+Version 2.7 - Integrated Logging enhancement
 """
 
 import os
@@ -17,6 +18,7 @@ from setup.setup_functions import setup_dependencies, setup_all_files
 from gui.gui_functions import run_gui
 from benchmarks.benchmark_runner import run_selected_benchmarks
 from utils.file_utils import create_info_folder, save_folder_name_to_file
+from utils.output_logger import setup_logging, cleanup_logging
 import timeLogging
 import logManagement
 import Driver_IFWI_Info
@@ -24,8 +26,8 @@ import Driver_IFWI_Info
 def main():
     """Main function that runs the entire program."""
     print("GFX Long Duration Automation Script")
-    print("Version 2.5 - Modularized Structure")
-    print("=" * 50)
+    print("Version 2.7 - Integrated Logging enhancement")
+    print("=" * 60)
     
     # Setup dependencies and files
     print("Setting up dependencies and files...")
@@ -57,7 +59,12 @@ def main():
         IFWI_version = Driver_IFWI_Info.get_IFWI_Version()
         expected_folder_name = f"Board{board_number}_Driver{Driver_version}_IFWI{IFWI_version}_{timestamp}"
         
-        save_folder_name_to_file(expected_folder_name)
+        # Setup output logging to the created folder
+        output_folder_path = os.path.join(script_path, expected_folder_name)
+        setup_logging(output_folder_path)
+        print(f"\nOutput logging started - saving to: {output_folder_path}\\output.txt")
+        
+        # No longer need to save folder name to temp file
         logManagement.create_benchmark_logs_folder(board_number, Driver_version, IFWI_version, timestamp)
         
         # Run benchmarks with settings
@@ -68,8 +75,16 @@ def main():
             print("All benchmarks completed successfully!")
         except Exception as e:
             print(f"Caught an exception: {e}")
+        finally:
+            # Always cleanup logging, even if there's an error
+            cleanup_logging()
+            print("Output logging completed and saved.")
     else:
         print("No selections made or GUI was cancelled.")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        print(f"Fatal error: {e}")
+        cleanup_logging()  # Ensure cleanup even on fatal errors
